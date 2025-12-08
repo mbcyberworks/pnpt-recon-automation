@@ -1,0 +1,59 @@
+# Output directories
+recon_*/
+
+# Test results
+test_results/
+*.test
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.*.sw?
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Configuration backups
+*.conf.bak
+config.bak
+
+# Compressed files
+*.tar.gz
+*.zip
+*.rar
+
+# Tool output
+*.json.bak
+*.txt.bak
+scan_output/
+results_backup/
+
+# Development
+node_modules/
+__pycache__/
+*.pyc
+.env
+.env.local
+
+# Personal notes
+TODO.md
+NOTES.md
+personal/
