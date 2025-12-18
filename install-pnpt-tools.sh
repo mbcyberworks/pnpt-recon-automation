@@ -5,12 +5,13 @@
 #
 # Author: MB Cyberworks (mbcyberworks.nl)
 # Purpose: Automated installation of reconnaissance tools for PNPT prep
-# Version: 1.0
+# Version: 2.0
 # License: MIT
 #
 # Description:
 # Installs all required ProjectDiscovery tools and dependencies using PDTM
 # (ProjectDiscovery Tool Manager) for consistent versioning and updates.
+# v2.0 adds: Gobuster, SMBmap, NFS utilities for complete reconnaissance
 #
 #############################################################################
 
@@ -155,6 +156,31 @@ install_additional_tools() {
     if ! command -v amass &> /dev/null; then
         log_info "Installing amass..."
         go install -v github.com/owasp-amass/amass/v4/...@master
+    fi
+    
+    # Gobuster (REQUIRED for v2.0+)
+    if ! command -v gobuster &> /dev/null; then
+        log_info "Installing gobuster (REQUIRED for v2.0+)..."
+        sudo apt update && sudo apt install -y gobuster
+    fi
+    
+    # SMBmap (REQUIRED for v2.0+)
+    if ! command -v smbmap &> /dev/null; then
+        log_info "Installing smbmap (REQUIRED for v2.0+)..."
+        sudo apt install -y smbmap
+    fi
+    
+    # NFS utilities (REQUIRED for v2.0+)
+    if ! command -v showmount &> /dev/null; then
+        log_info "Installing nfs-common (REQUIRED for v2.0+)..."
+        sudo apt install -y nfs-common
+    fi
+    
+    # Feroxbuster (OPTIONAL but recommended - faster than gobuster)
+    if ! command -v feroxbuster &> /dev/null; then
+        log_warn "Feroxbuster not installed (optional but recommended)"
+        log_warn "Install with: cargo install feroxbuster"
+        log_warn "Feroxbuster is 3x faster than gobuster for directory discovery"
     fi
     
     # GAU (Get All URLs)
